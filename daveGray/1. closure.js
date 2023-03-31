@@ -40,6 +40,7 @@ console.log(x); // 7
 
 // IIFE (Immediately Invoked Function Expression)
 // When we are calling a function immediately after we have defined it
+// Point to be noted here is that the console.log statement defined inside the parent function gets executed once 
 
 const aFunction = (() => {
     let count = 0;
@@ -50,4 +51,20 @@ aFunction() // 1
 aFunction() // 2
 aFunction() // 3
 
-// Point to be noted here is that the console.log statement defined inside the parent function gets executed once 
+
+// EXAMPLE 3 
+
+const credits = ((num) => {
+    let credits = num;
+    console.log(`Initial credits are equal to: ${credits}`);
+    return () => {
+        credits -= 1;
+        if (credits > 1) console.log(`playing game, ${credits} credits remaining`);
+        if (credits == 1) console.log(`playing game, 1 credit remaining`);
+        if (credits <= 0) console.log(`not enough credits`)
+    }
+})(3);
+
+credits(); // playing game, 2 credits remaining
+credits(); // playing game, 1 credit remaining
+credits(); // not enough credits
